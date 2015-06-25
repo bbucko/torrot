@@ -1,0 +1,10 @@
+{
+	"ImportPath": "github.com/bbucko/gobt/cmd/gobt",
+	"GoVersion": "go1.4.2",
+	"Deps": [
+		{
+			"ImportPath": "github.com/marksamman/bencode",
+			"Rev": "5f5f7bdd362046b042ea10f8c0ca0e06a97e59f4"
+		}
+	]
+}
