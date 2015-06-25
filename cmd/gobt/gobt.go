@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
+	"github.com/bbucko/gobt/torrent"
 	"github.com/marksamman/bencode"
 )
 
 func main() {
-	fmt.Println("Hello, 世界")
-
+	fmt.Println("Hello, 世界 {}", torrent.New())
 
 	dict := make(map[string]interface{})
 	dict["string key"] = "hello world"

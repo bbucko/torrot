@@ -1,0 +1,12 @@
+=== GoBT
+
+GoBT is a torrent client implementation written in Go.
+
+== Features
+
+- [] Torrent File Parsing
+- [] Connecting to tracker
+- [] Downloading chunks
+- [] Configuration
+- [] Logging
+- [] WebUI
