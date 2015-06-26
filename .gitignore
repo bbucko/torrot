@@ -2,3 +2,7 @@
 .idea
 *.iml
 bin
+_builds
+_steps
+_projects
+

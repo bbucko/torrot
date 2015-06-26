@@ -2,8 +2,9 @@
 
 GoBT is a torrent client implementation written in Go.
 
-image:https://codeship.com/projects/58ef6bc0-fe06-0132-86f1-6e136baa31ff/status?branch=master["Codeship Badge"]
+image::https://codeship.com/projects/58ef6bc0-fe06-0132-86f1-6e136baa31ff/status?branch=master["Codeship Badge", link=""]
 
+image::https://app.wercker.com/status/ce42be2b8b508ff5622c8ae75655be8f/m["Wercker Badge", link=""]
 
 == Features
 
