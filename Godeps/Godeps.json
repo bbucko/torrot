@@ -1,7 +1,20 @@
 {
-	"ImportPath": "github.com/bbucko/gobt/cmd/gobt",
+	"ImportPath": "github.com/bbucko/gobt",
 	"GoVersion": "go1.4.2",
+	"Packages": [
+		"github.com/bbucko/gobt/..."
+	],
 	"Deps": [
+		{
+			"ImportPath": "github.com/codegangsta/inject",
+			"Comment": "v1.0-rc1-10-g33e0aa1",
+			"Rev": "33e0aa1cb7c019ccc3fbe049a8262a6403d30504"
+		},
+		{
+			"ImportPath": "github.com/go-martini/martini",
+			"Comment": "v1.0-128-ge038957",
+			"Rev": "e038957346d959db124df28ebf5c0adb7e7866bf"
+		},
 		{
 			"ImportPath": "github.com/marksamman/bencode",
 			"Rev": "5f5f7bdd362046b042ea10f8c0ca0e06a97e59f4"

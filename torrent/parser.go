@@ -31,6 +31,6 @@ func New() TorrentFile {
 	return TorrentFile{}
 }
 
-func parseFile() (torrentFile TorrentFile) {
+func parseFile(fileName string) (torrentFile TorrentFile) {
 	return
 }
