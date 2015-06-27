@@ -24,7 +24,7 @@ type infoDict struct {
 type MetainfoFile struct {
 	info         infoDict
 	announce     string
-	announceList []string
+	announceList [][]string
 	creationDate int64
 	comment      string
 	createdBy    string
@@ -48,15 +48,17 @@ func New(fileName string) MetainfoFile {
 
 	encodedInfo := encodedTorrent["info"].(map[string]interface{})
 
+	//Parse File element
 	files := []fileDict{}
-
 	if length, ok := encodedInfo["length"].(int64); ok {
+		//Single File Mode
 		files = append(files, fileDict{
 			length: length,
 			path:   []string{encodedInfo["name"].(string)},
 			md5sum: getFromMapWithDefault(encodedTorrent, "md5sum", "").(string),
 		})
 	} else {
+		//Multi File Mode
 		for _, encodedFileElement := range encodedInfo["files"].([]interface{}) {
 			encodedFile := encodedFileElement.(map[string]interface{})
 
@@ -72,6 +74,18 @@ func New(fileName string) MetainfoFile {
 		}
 	}
 
+	//Parse Announce List (arrays of arrays of strings
+	announceList := [][]string{}
+	if encodedAnnounceList, ok := encodedTorrent["announce-list"]; ok {
+		for _, encodedAnnounceListElement := range encodedAnnounceList.([]interface{}) {
+			announceListElement := []string{}
+			for _, encodedAnnounceListElementElement := range encodedAnnounceListElement.([]interface{}) {
+				announceListElement = append(announceListElement, encodedAnnounceListElementElement.(string))
+			}
+			announceList = append(announceList, announceListElement)
+		}
+	}
+
 	return MetainfoFile{
 		info: infoDict{
 			name:        encodedInfo["name"].(string),
@@ -80,9 +94,10 @@ func New(fileName string) MetainfoFile {
 
 			files: files,
 		},
-		announce: encodedTorrent["announce"].(string),
-		comment:  getFromMapWithDefault(encodedTorrent, "comment", "").(string),
-		private:  getFromMapWithDefault(encodedTorrent, "private", false).(bool),
+		announce:     encodedTorrent["announce"].(string),
+		announceList: announceList,
+		comment:      getFromMapWithDefault(encodedTorrent, "comment", "").(string),
+		private:      getFromMapWithDefault(encodedTorrent, "private", false).(bool),
 	}
 }
 
