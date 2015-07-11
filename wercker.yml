@@ -4,7 +4,7 @@ build:
     # Sets the go workspace and places you package
     # at the right place in the workspace tree
     - setup-go-workspace:
-        package-dir: github.com/bbucko/gobt
+        package-dir: github.com/bbucko/torrot
 
     # Install GoDep tool
     - script:
