@@ -1,9 +1,21 @@
 package torrent
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
+
+func TestNonExistingFile(t *testing.T) {
+	torrent := New("nonexisting.torrent")
+	assert.Nil(t, torrent)
+}
+
+func TestBrokenFile(t *testing.T) {
+	torrent := New("sample-broken.torrent")
+	assert.Nil(t, torrent)
+}
+
 
 func TestParsingSampleTorrent(t *testing.T) {
 	torrent := New("sample.torrent")

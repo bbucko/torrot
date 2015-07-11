@@ -1,9 +1,10 @@
 package torrent
 
 import (
-	"github.com/marksamman/bencode"
 	"log"
 	"os"
+
+	"github.com/marksamman/bencode"
 )
 
 type fileDict struct {
@@ -33,17 +34,18 @@ type MetainfoFile struct {
 }
 
 //New creates new torrent
-func New(fileName string) MetainfoFile {
-
+func New(fileName string) *MetainfoFile {
 	file, err := os.Open(fileName)
 	if err != nil {
-		log.Fatal("Opening file", err)
+		log.Print("Opening file err: ", err)
+		return nil
 	}
 	defer file.Close()
 
 	encodedTorrent, err := bencode.Decode(file)
 	if err != nil {
-		log.Fatal("Decoding torrent", err)
+		log.Print("Decoding torrent err: ", err)
+		return nil
 	}
 
 	encodedInfo := encodedTorrent["info"].(map[string]interface{})
@@ -86,7 +88,7 @@ func New(fileName string) MetainfoFile {
 		}
 	}
 
-	return MetainfoFile{
+	return &MetainfoFile{
 		info: infoDict{
 			name:        encodedInfo["name"].(string),
 			pieceLength: encodedInfo["piece length"].(int64),
@@ -104,7 +106,6 @@ func New(fileName string) MetainfoFile {
 func getFromMapWithDefault(aMap map[string]interface{}, key string, defaultValue interface{}) interface{} {
 	if element, ok := aMap[key]; ok {
 		return element
-	} else {
-		return defaultValue
 	}
+	return defaultValue
 }
