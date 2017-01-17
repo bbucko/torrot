@@ -1,0 +1,4 @@
+- service: test
+  type: serial
+  steps:
+  - command: go test ./...
